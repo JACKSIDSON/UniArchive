@@ -3,6 +3,7 @@
 > 开源 · 本地优先 · Obsidian 式大学生电子档案库
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![Release](https://img.shields.io/github/v/release/JACKSIDSON/UniArchive?label=download&color=2ea44f)](https://github.com/JACKSIDSON/UniArchive/releases/latest)
 [![Electron](https://img.shields.io/badge/Electron-30-47848F?logo=electron&logoColor=white)](https://www.electronjs.org/)
 [![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)](#)
 [![Local-first](https://img.shields.io/badge/data-local--first-2ea44f)](#)
@@ -30,6 +31,22 @@
 | 📜 操作日志 | 所有写操作落盘为 JSONL + SQLite，可导出 JSON |
 | 🌓 明暗主题 | 敏感档案默认模糊显示，点击才展开 |
 | 🔌 插件骨架 | 从 `.uniarchive/plugins/` 加载，可注册命令 / 菜单 / 视图 |
+
+---
+
+## 下载安装
+
+不想自己编译的话，直接下现成的：
+
+| 平台 | 文件 | 说明 |
+| --- | --- | --- |
+| Windows 10/11 x64 | `UniArchive-1.0.0-Setup.exe` | 安装包，双击安装 |
+| Windows 10/11 x64 | `UniArchive-1.0.0-Setup.zip` | 免安装版，解压后直接运行 `UniArchive.exe` |
+
+👉 **[前往 Releases 下载](https://github.com/JACKSIDSON/UniArchive/releases/latest)**（含 SHA256 校验和）
+
+> 安装包未做代码签名，Windows SmartScreen 首次运行可能提示"未知发布者"，选「仍要运行」即可。
+> macOS / Linux 用户请从源码构建（见下）。
 
 ---
 
