@@ -2,8 +2,16 @@
 
 > 开源 · 本地优先 · Obsidian 式大学生电子档案库
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+[![Electron](https://img.shields.io/badge/Electron-30-47848F?logo=electron&logoColor=white)](https://www.electronjs.org/)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey)](#)
+[![Local-first](https://img.shields.io/badge/data-local--first-2ea44f)](#)
+[![Tests](https://img.shields.io/badge/tests-67%20unit%20%2B%207%20e2e-brightgreen)](#测试)
+
 一句话：**文件夹即数据库**。所有档案都是普通 Markdown 文件（YAML frontmatter + 正文），附件是普通文件，
 检索索引（SQLite FTS5）是可随时删除重建的派生数据。卸载软件后，你依然可以用任意文本编辑器读完整个大学。
+
+![总览](screenshots/01-dashboard.png)
 
 ---
 
@@ -70,11 +78,51 @@ pnpm dev
 
 ---
 
+## 测试
+
+| 层次 | 工具 | 规模 | 结果 |
+| --- | --- | --- | --- |
+| 类型检查 | `tsc --noEmit` | — | 0 错 |
+| 单元测试 | Vitest | 67 项 / 7 个文件 | 全过 |
+| 端到端 | Playwright（直驱真实 Electron） | 7 个场景 | 全过 |
+| 性能基准 | Vitest（真实生成 10 万篇 Markdown） | 4 项断言 | 全过（检索均 ≤ 0.5s） |
+
+```bash
+pnpm typecheck     # 类型检查
+pnpm test          # 单元测试（自动切到 Node ABI，跑完自动切回 Electron）
+pnpm test:e2e      # 端到端：启动真实应用并驱动完整流程
+pnpm bench:search  # 10 万条检索性能基准（约 19 分钟，绝大部分耗在写 10 万个文件）
+```
+
+E2E 覆盖四个核心场景：新建 Vault → 归档 → 检索 → 导出 `.ueap`；跨 Vault 导入合并；
+删除进入回收站再恢复；加密导出的正确密码成功 / 错误密码失败。
+并直接断言数据不变量（`.ueap` 改名 `.zip` 可解压、不携带 `index.db`/`logs`/`backups`/`recycle`、
+导入前自动快照、回收站 30 天 TTL）。
+
+---
+
 ## 界面预览
 
-`screenshots/` 下是脚本自动跑出来的真实界面截图（Welcome / 总览 / 档案 / 检索 /
-时间线 / 标签 / 导出 / 导入 / 备份 / 回收站 / 日志 / 设置 / 档案详情 / 暗黑模式），
-全部由 `scripts/demo-capture.mjs` 驱动打包后的应用生成，不是设计稿。
+以下截图全部由 `scripts/demo-capture.mjs` 驱动**打包后的真实应用**自动生成（含演示数据），
+不是设计稿，也不是手绘原型。
+
+| 分类浏览 | 全文检索 |
+| --- | --- |
+| ![档案列表](screenshots/02-archives.png) | ![检索](screenshots/03-search.png) |
+
+| 成长时间线 | 档案详情（含附件） |
+| --- | --- |
+| ![时间线](screenshots/04-timeline.png) | ![档案详情](screenshots/12-archive-detail.png) |
+
+| 导出中心 | 回收站（30 天可恢复） |
+| --- | --- |
+| ![导出](screenshots/06-export.png) | ![回收站](screenshots/09-recycle.png) |
+
+| 敏感档案默认模糊 | 暗黑模式 |
+| --- | --- |
+| ![敏感档案](screenshots/13-archive-detail-sensitive.png) | ![暗黑模式](screenshots/14-dashboard-dark.png) |
+
+其余截图见 [`screenshots/`](./screenshots)：Welcome、标签、导入、备份、日志、设置。
 
 ---
 
