@@ -1,0 +1,128 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222 47% 11%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 221 83% 53%;
+    --radius: 0.6rem;
+  }
+
+  .dark {
+    --background: 222 47% 7%;
+    --foreground: 210 40% 96%;
+    --card: 222 44% 10%;
+    --card-foreground: 210 40% 96%;
+    --popover: 222 44% 10%;
+    --popover-foreground: 210 40% 96%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 96%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 217 33% 17%;
+    --accent-foreground: 210 40% 96%;
+    --destructive: 0 63% 45%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 20%;
+    --input: 217 33% 20%;
+    --ring: 217 91% 60%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Microsoft YaHei UI', 'PingFang SC', 'Hiragino Sans GB', system-ui, -apple-system,
+      'Segoe UI', sans-serif;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    @apply rounded-full bg-border;
+  }
+  .blur-sensitive {
+    filter: blur(6px);
+    user-select: none;
+  }
+}
+
+/* Markdown 正文（档案详情） */
+.markdown-body {
+  @apply text-sm leading-7 text-foreground;
+}
+.markdown-body h1 {
+  @apply mb-3 mt-5 text-xl font-semibold;
+}
+.markdown-body h2 {
+  @apply mb-2 mt-5 text-lg font-semibold;
+}
+.markdown-body h3 {
+  @apply mb-2 mt-4 text-base font-semibold;
+}
+.markdown-body p {
+  @apply my-2;
+}
+.markdown-body ul {
+  @apply my-2 list-disc pl-6;
+}
+.markdown-body ol {
+  @apply my-2 list-decimal pl-6;
+}
+.markdown-body a {
+  @apply text-primary underline underline-offset-2;
+}
+.markdown-body code {
+  @apply rounded bg-muted px-1.5 py-0.5 text-[0.85em];
+}
+.markdown-body pre {
+  @apply my-3 overflow-x-auto rounded-lg bg-muted p-3 text-xs;
+}
+.markdown-body blockquote {
+  @apply my-3 border-l-4 border-border pl-3 text-muted-foreground;
+}
+.markdown-body table {
+  @apply my-3 w-full border-collapse text-sm;
+}
+.markdown-body th,
+.markdown-body td {
+  @apply border border-border px-2 py-1 text-left;
+}
+.markdown-body hr {
+  @apply my-4 border-border;
+}
+.markdown-body img {
+  @apply my-3 max-w-full rounded-lg border border-border;
+}

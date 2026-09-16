@@ -28,23 +28,28 @@
 ## 快速开始
 
 ```bash
-# 1. 安装依赖（需要 Node 18+）
-npm install          # 推荐：直接落地真实文件
-# 或 pnpm install（若系统允许创建符号链接；本项目已附 .npmrc 兼容配置）
+# 1. 安装依赖（需要 Node 18+，包管理器为 pnpm）
+pnpm install
 
 # 2. 把原生模块切到 Electron ABI（首次必须，理由见 docs/dev-notes.md）
-npm run abi:electron
+pnpm abi:electron
 
 # 3. 启动开发模式
-npm run dev
+pnpm dev
 ```
 
 首次启动会进入 Welcome 页面，选择「新建档案库」并指定一个空文件夹即可。
 
+> **npm 用户**：把所有 `pnpm xxx` 换成 `npm run xxx` 同样可用；本环境曾在无法创建
+> 符号链接的 Windows 上用 npm 完成过完整构建与打包，`.npmrc` 已预设 `node-linker=hoisted`
+> 以兼容 Electron 与原生模块。
+
 > **注意**：`better-sqlite3` 的 `.node` 与运行时 ABI 强绑定（Node 22 = 127，
 > Electron 30 = 123），一份产物不可能两者通吃。本项目在 `.abi/` 里缓存了两份，
-> 由 `scripts/use-abi.mjs` 按任务切换，`npm test` / `npm run dist` 已自动处理。
-> 手动切错时会报 `NODE_MODULE_VERSION` 不匹配，跑一次 `npm run abi:electron` 即可。
+> 由 `scripts/use-abi.mjs` 按任务切换，`pnpm test` / `pnpm dist` 已自动处理。
+> 手动切错时会报 `NODE_MODULE_VERSION` 不匹配，跑一次 `pnpm abi:electron` 即可。
+>
+> `.abi/` 不入库，首次需要按 `docs/dev-notes.md` 的手册下载两份预编译产物。
 
 ---
 

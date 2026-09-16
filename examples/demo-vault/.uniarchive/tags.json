@@ -1,0 +1,9 @@
+[
+  { "id": "tag-e5ada6a661e5ad", "name": "学业", "builtin": true },
+  { "id": "tag-e88da389e88da3", "name": "荣誉", "builtin": true },
+  { "id": "tag-e7ab9de8b5e78a", "name": "竞赛", "builtin": true },
+  { "id": "tag-e5ae9ee4b9a0", "name": "实习", "builtin": true },
+  { "id": "tag-e8af84e4bc981", "name": "评优", "builtin": true },
+  { "id": "tag-e6b182e8818c", "name": "求职", "builtin": true },
+  { "id": "tag-e7a791e7a081", "name": "科研", "builtin": true }
+]

@@ -1,0 +1,9 @@
+{
+  "id": "hello-uniarchive",
+  "name": "示例插件",
+  "version": "1.0.0",
+  "description": "注册一个命令并在「插件」菜单中显示",
+  "author": "UniArchive",
+  "main": "main.js",
+  "minAppVersion": "1.0.0"
+}

@@ -1,0 +1,8 @@
+{
+  "recycleTtlDays": 30,
+  "autoBackup": false,
+  "autoBackupIntervalDays": 7,
+  "blurSensitive": true,
+  "pageSize": 50,
+  "pluginsEnabled": true
+}

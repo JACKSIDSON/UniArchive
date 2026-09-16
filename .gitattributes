@@ -1,0 +1,30 @@
+# 统一换行符：仓库内一律 LF，避免 Windows 开发者提交 CRLF 造成整文件 diff
+* text=auto eol=lf
+
+# Windows 脚本必须保留 CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+
+# 二进制资源，禁止换行符转换与 diff
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.icns binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.node binary
+*.exe binary
+*.dll binary
+*.so binary
+*.dylib binary
+*.zip binary
+*.ueap binary
+*.gz binary
+
+# 锁文件在 diff / review 里折叠（不参与语言统计）
+pnpm-lock.yaml linguist-generated=true -diff
+package-lock.json linguist-generated=true -diff

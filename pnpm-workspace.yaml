@@ -1,0 +1,15 @@
+packages:
+  # DECISION: 单包仓库（Electron 主进程 + 预加载 + 渲染进程在同一包内）。
+  # 规格书要求存在 pnpm-workspace.yaml，故此处声明根包为唯一 workspace 成员。
+  - '.'
+
+allowBuilds:
+  better-sqlite3: set this to true or false
+  electron: set this to true or false
+  esbuild: set this to true or false
+
+# pnpm 10+ 默认阻止依赖的构建脚本，Electron / 原生模块需要显式放行。
+onlyBuiltDependencies:
+  - electron
+  - better-sqlite3
+  - esbuild

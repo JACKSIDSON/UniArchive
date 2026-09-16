@@ -1,0 +1,118 @@
+{
+  "name": "uniarchive",
+  "version": "1.0.0",
+  "private": true,
+  "description": "开源 · 本地优先 · Obsidian 式大学生电子档案库",
+  "license": "MIT",
+  "author": "UniArchive contributors",
+  "main": "./out/main/index.js",
+  "packageManager": "pnpm@11.21.0",
+  "build": {
+    "appId": "cn.uniarchive.app",
+    "productName": "UniArchive",
+    "npmRebuild": false,
+    "electronDist": "node_modules/electron/dist",
+    "files": [
+      "out/**/*",
+      "package.json",
+      "node_modules/better-sqlite3/**/*",
+      "node_modules/bindings/**/*"
+    ],
+    "asarUnpack": [
+      "**/node_modules/better-sqlite3/**/*",
+      "**/node_modules/bindings/**/*",
+      "**/*.node"
+    ],
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "artifactName": "UniArchive-${version}-Setup.${ext}",
+      "signAndEditExecutable": false
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "artifactName": "UniArchive-${version}.${ext}"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "artifactName": "UniArchive-${version}.${ext}"
+    }
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "electron",
+      "better-sqlite3",
+      "esbuild"
+    ]
+  },
+  "scripts": {
+    "abi:node": "node scripts/use-abi.mjs node",
+    "abi:electron": "node scripts/use-abi.mjs electron",
+    "dev": "npm run abi:electron && electron-vite dev",
+    "start": "npm run abi:electron && electron-vite preview",
+    "build": "electron-vite build",
+    "typecheck": "tsc --noEmit",
+    "pretest": "npm run abi:node",
+    "test": "vitest run",
+    "posttest": "npm run abi:electron",
+    "pretest:unit": "npm run abi:node",
+    "test:unit": "vitest run",
+    "posttest:unit": "npm run abi:electron",
+    "pretest:e2e": "npm run abi:electron",
+    "test:e2e": "playwright test",
+    "prebench:search": "npm run abi:node",
+    "bench:search": "vitest run tests/unit/performance.test.ts",
+    "postbench:search": "npm run abi:electron",
+    "rebuild": "electron-builder install-app-deps",
+    "predist": "npm run abi:electron",
+    "dist": "electron-vite build && electron-builder --win",
+    "dist:mac": "electron-vite build && electron-builder --mac"
+  },
+  "dependencies": {
+    "@noble/hashes": "^1.5.0",
+    "adm-zip": "^0.5.16",
+    "better-sqlite3": "^11.5.0",
+    "chokidar": "^4.0.3",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.0",
+    "lucide-react": "^0.451.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-markdown": "^9.0.1",
+    "react-router-dom": "^6.27.0",
+    "remark-gfm": "^4.0.0",
+    "tailwind-merge": "^2.5.4",
+    "uuid": "^10.0.0",
+    "zustand": "^4.5.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "@types/adm-zip": "^0.5.8",
+    "@types/better-sqlite3": "^7.6.11",
+    "@types/js-yaml": "^4.0.9",
+    "@types/node": "^20.16.11",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@types/uuid": "^10.0.0",
+    "@vitejs/plugin-react": "^4.3.2",
+    "autoprefixer": "^10.4.20",
+    "electron": "^30.5.1",
+    "electron-builder": "^24.13.3",
+    "electron-vite": "^2.3.0",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.9",
+    "vitest": "^2.1.3"
+  }
+}

@@ -1,0 +1,58 @@
+# ------------------------------------------------------------------
+# UniArchive .gitignore
+# 原则：只提交「源码 + 配置 + 文档 + 测试 + 示例」，
+#      一切可再生成的产物（依赖、构建、打包、缓存）都不入库。
+# ------------------------------------------------------------------
+
+# 依赖
+node_modules/
+
+# 构建 / 打包产物（安装包请走 GitHub Releases，不要塞进仓库）
+out/
+dist/
+*.tsbuildinfo
+
+# better-sqlite3 预编译产物与双 ABI 缓存（获取方式见 docs/dev-notes.md「原生模块 ABI」）
+.abi/
+*.tar.gz
+
+# 运行时数据
+index.db
+index.db-wal
+index.db-shm
+*.ueap
+
+# 截图脚本生成的演示库（`node scripts/demo-capture.mjs` 可随时重建；
+# 注意 screenshots/ 是要提交的，README 会引用）
+examples/demo-vault-live/
+screenshots/.tmp/
+
+# 测试与覆盖率产物
+test-results/
+playwright-report/
+coverage/
+
+# 日志
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-error.log*
+
+# 编辑器 / 操作系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 环境变量
+.env
+.env.*
+!.env.example
+
+# 锁文件：本项目由 PRD 指定使用 pnpm（见 package.json 的 packageManager 字段）
+# 若你改用 npm，删掉下面这行即可
+package-lock.json
+
+# WorkBuddy 本地工程记忆（含本机绝对路径，不公开）
+.workbuddy/
